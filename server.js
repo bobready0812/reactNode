@@ -7,8 +7,13 @@ http.listen(8080, function () {
   console.log('listening on 8080')
 }); 
 
+app.use(express.static(path.join(__dirname, 'react-project/build')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-    res.sendFile( path.join(__dirname, 'public/main.html'))
-})
+    res.sendFile( path.join(__dirname, 'index.html'))
+});
+
+app.get('*', function(req, res) {
+  res.sendFile( path.join(__dirname, 'index.html'))
+});
